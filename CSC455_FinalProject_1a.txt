@@ -1,0 +1,37 @@
+DROP TABLE Geo;
+DROP TABLE User;
+DROP TABLE Tweets;
+          
+CREATE TABLE User(
+id VARCHAR(25),
+name VARCHAR(100),
+screen_name VARCHAR(100),
+description VARCHAR(200),
+friends_count NUMBER,
+CONSTRAINT UserPK PRIMARY KEY(id)
+);
+
+CREATE TABLE Tweets(
+created_at VARCHAR(100),
+id_str VARCHAR(18),
+text VARCHAR(180),
+source VARCHAR(100),
+in_reply_to_user_id VARCHAR(20),
+in_reply_to_screen_name VARCHAR(60),
+in_reply_to_status_id VARCHAR(40),
+retweet_count NUMBER,
+contributors VARCHAR(100),
+user_id VARCHAR(25),
+t_geoid NUMBER(7) UNIQUE,
+CONSTRAINT TweetPK PRIMARY KEY(id_str),
+CONSTRAINT TweetFK FOREIGN KEY(user_id) REFERENCES User(id),
+CONSTRAINT TweetFK2 FOREIGN KEY(t_geoid) REFERENCES Geo(geoid)
+);
+
+CREATE TABLE Geo(
+geoid NUMBER(7) UNIQUE,
+type VARCHAR(20),
+latitude NUMBER,
+longitude NUMBER,
+CONSTRAINT GeoPK PRIMARY KEY (geoid)
+);

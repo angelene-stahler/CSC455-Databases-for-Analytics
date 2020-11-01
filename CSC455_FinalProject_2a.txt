@@ -1,0 +1,10 @@
+import sqlite3
+
+conn=sqlite3.connect('csc455_FinalProject.db')
+cur=conn.cursor()
+
+
+q2ai = "SELECT id_str FROM Tweets WHERE id_str LIKE '%44%';"
+cur.execute(q2ai)
+
+
